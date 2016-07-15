@@ -1,6 +1,10 @@
 package com.mac.training.applicationapp;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +13,8 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity-->";
+    public static final String BUNDLE_KEY_MESSAGE = "MESSAGE_KEY";
+    public static final String CUSTOM_EVENT_KEY = "CUSTOM_EVENT";
 
     public void clickService(View view) {
         Intent intent = new Intent(this, IntentServiceClass.class);
@@ -62,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "onResume: 3"+ ", Thread:" + Thread.currentThread().toString());
+        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver, new IntentFilter(CUSTOM_EVENT_KEY));
 
     }
 
@@ -75,4 +82,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ImageActivity.class);
         startActivity(intent);
     }
+
+    private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String message = intent.getStringExtra(BUNDLE_KEY_MESSAGE);
+            Log.d(TAG, "Got message: " + message);
+        }
+    };
 }
