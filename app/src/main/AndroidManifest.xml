@@ -27,7 +27,14 @@
         <receiver
             android:name=".NetworkReceiver"
             android:enabled="true"
-            android:exported="false"></receiver>
+            android:exported="false">
+
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+
     </application>
 
 </manifest>
