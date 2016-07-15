@@ -17,7 +17,7 @@ public class ServiceClass extends Service {
     public void onCreate() {
         super.onCreate();
         ApplicationApp.attr++;
-        Log.d(TAG, "onCreate:, attr value=" + ApplicationApp.attr);
+        Log.d(TAG, "onCreate:, attr value=" + ApplicationApp.attr+ ", Thread:" + Thread.currentThread().toString());
     }
 
     @Nullable

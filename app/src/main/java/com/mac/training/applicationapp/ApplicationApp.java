@@ -15,7 +15,8 @@ public class ApplicationApp extends Application {
     public void onCreate() {
         super.onCreate();
         attr++;
-        Log.d(TAG, "onCreate: , attr value=" + attr);
+        Log.d(TAG, "onCreate: , attr value=" + attr + ", Thread:" + Thread.currentThread().getName());
+
 
     }
 
