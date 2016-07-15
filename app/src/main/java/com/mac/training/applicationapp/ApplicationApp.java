@@ -9,11 +9,14 @@ import android.util.Log;
 public class ApplicationApp extends Application {
 
     private static final String TAG = "ApplicationApp-->";
+    public static int attr = 0;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d(TAG, "onCreate: ");
+        attr++;
+        Log.d(TAG, "onCreate: , attr value=" + attr);
+
     }
 
 
